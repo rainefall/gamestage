@@ -1,0 +1,45 @@
+﻿<Window x:Name="Window" x:Class="carpenter.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:carpenter"
+        xmlns:glWpfControl="clr-namespace:OpenTK.Wpf;assembly=GLWpfControl"
+        mc:Ignorable="d"
+        Title="carpenter" Width="1280" WindowStyle="SingleBorderWindow" Height="720">
+    <DockPanel x:Name="Root" LastChildFill="True">
+        <ToolBarTray x:Name="MenuBar" DockPanel.Dock="Top" Height="32" HorizontalAlignment="Stretch">
+            <ToolBar HorizontalAlignment="Center" VerticalAlignment="Center" Height="32"/>
+        </ToolBarTray>
+        <ToolBarTray x:Name="ToolBar" Height="32" DockPanel.Dock="Top"/>
+        <Grid x:Name="StatusBar" DockPanel.Dock="Bottom" Height="16"/>
+        <ToolBarTray x:Name="Sidebar" DockPanel.Dock="Left" Width="48" Panel.ZIndex="1"/>
+        <TabControl x:Name="Inspector" DockPanel.Dock="Right" Width="192">
+            <TabItem x:Name="Placeholder" Header="Sample Text" Height="22" Margin="-2,-2,-2,0" VerticalAlignment="Top">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
+        <Grid x:Name="ViewportGrid" Height="Auto">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <glWpfControl:GLWpfControl 
+                    x:Name="Viewport_UL" 
+                    Render="Viewport_UL_OnRender"/>
+            <glWpfControl:GLWpfControl 
+                    x:Name="Viewport_UR" 
+                    Render="Viewport_UR_OnRender" Grid.RowSpan="1" Grid.Column="1"/>
+            <glWpfControl:GLWpfControl 
+                    x:Name="Viewport_LL" 
+                    Render="Viewport_LL_OnRender" Grid.Row="1" Grid.ColumnSpan="1"/>
+            <glWpfControl:GLWpfControl 
+                    x:Name="Viewport_LR" 
+                    Render="Viewport_LR_OnRender" Grid.Column="1" Grid.Row="1"/>
+        </Grid>
+    </DockPanel>
+</Window>
